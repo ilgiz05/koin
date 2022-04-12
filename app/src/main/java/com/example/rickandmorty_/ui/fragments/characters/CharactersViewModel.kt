@@ -7,12 +7,9 @@ import com.example.rickandmorty_.base.BaseViewModel
 import com.example.rickandmorty_.data.repositories.CharacterRepository
 import com.example.rickandmorty_.models.RickAndMortyCharacter
 import com.example.rickandmorty_.models.RickAndMortyResponse
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class CharactersViewModel @Inject constructor(
+class CharactersViewModel constructor(
     private val repository: CharacterRepository
 ) : BaseViewModel() {
     var page = 0
@@ -36,5 +33,6 @@ class CharactersViewModel @Inject constructor(
     }
 
     fun getCharacters() =
-        repository.getCharacters().collectFlow(_characterLocaleState){}
+        repository.getCharacters().collectFlow(_characterLocaleState) {}
+
 }

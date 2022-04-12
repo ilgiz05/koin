@@ -7,12 +7,10 @@ import com.example.rickandmorty_.base.BaseViewModel
 import com.example.rickandmorty_.data.repositories.LocationsRepository
 import com.example.rickandmorty_.models.RickAndMortyLocation
 import com.example.rickandmorty_.models.RickAndMortyResponse
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class LocationViewModel @Inject constructor(
+
+class LocationViewModel constructor(
     private val repository: LocationsRepository
 ) : BaseViewModel() {
     var page = 0
@@ -34,6 +32,7 @@ class LocationViewModel @Inject constructor(
             }
         }
     }
+
     fun getEpisodes() =
         repository.getLocation().collectFlow(_locationLocaleState, {})
 }

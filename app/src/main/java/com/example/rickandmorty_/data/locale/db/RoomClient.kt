@@ -6,7 +6,7 @@ import com.example.rickandmorty_.data.locale.db.daos.CharacterDao
 import com.example.rickandmorty_.data.locale.db.daos.EpisodesDao
 import com.example.rickandmorty_.data.locale.db.daos.LocationDao
 
-class RoomClient {
+class  RoomClient {
     fun provideCrateAppDatabase(context: Context) = Room.databaseBuilder(
         context,
         AppDatabase::class.java, "database.rickandmorty.com"

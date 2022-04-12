@@ -2,13 +2,7 @@ package com.example.rickandmorty_.ui.fragments.locations
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.rickandmorty_.R
@@ -17,15 +11,14 @@ import com.example.rickandmorty_.common.extensions.submitDataPaging
 import com.example.rickandmorty_.databinding.FragmentLocationBinding
 import com.example.rickandmorty_.ui.adapters.LocationAdapter
 import com.example.rickandmorty_.ulits.PaginationScrollListener
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class LocationFragment : BaseFragment<FragmentLocationBinding, LocationViewModel>(
     R.layout.fragment_location
 ) {
 
     override val binding by viewBinding(FragmentLocationBinding::bind)
-    override val viewModel: LocationViewModel by viewModels()
+    override val viewModel: LocationViewModel by viewModel()
     private val locationAdapter = LocationAdapter()
 
     override fun setupViews() {
@@ -72,7 +65,8 @@ class LocationFragment : BaseFragment<FragmentLocationBinding, LocationViewModel
     }
 
     fun isOnline(): Boolean {
-        val cm = requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val cm =
+            requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val netInfo = cm.activeNetworkInfo
         return netInfo != null && netInfo.isConnectedOrConnecting
     }

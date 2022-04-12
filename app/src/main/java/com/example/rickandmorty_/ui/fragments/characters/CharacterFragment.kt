@@ -2,14 +2,8 @@ package com.example.rickandmorty_.ui.fragments.characters
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -17,18 +11,19 @@ import com.example.rickandmorty_.R
 import com.example.rickandmorty_.base.BaseFragment
 import com.example.rickandmorty_.common.extensions.submitDataPaging
 import com.example.rickandmorty_.databinding.FragmentCharacterBinding
+import com.example.rickandmorty_.models.RickAndMortyCharacter
 import com.example.rickandmorty_.ui.adapters.CharacterAdapter
 import com.example.rickandmorty_.ulits.PaginationScrollListener
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class CharacterFragment : BaseFragment<FragmentCharacterBinding, CharactersViewModel>(
     R.layout.fragment_character
 ) {
 
     override val binding by viewBinding(FragmentCharacterBinding::bind)
-    override val viewModel: CharactersViewModel by viewModels()
-    private val characterAdapter = CharacterAdapter(this::onItemClickListener)
+    private lateinit var tempArrayList: ArrayList<RickAndMortyCharacter>
+    override val viewModel: CharactersViewModel by viewModel()
+    val characterAdapter = CharacterAdapter(this::onItemClickListener)
 
     override fun setupViews() {
         setupAdapter()
@@ -77,7 +72,8 @@ class CharacterFragment : BaseFragment<FragmentCharacterBinding, CharactersViewM
     }
 
     fun isOnline(): Boolean {
-        val cm = requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val cm =
+            requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val netInfo = cm.activeNetworkInfo
         return netInfo != null && netInfo.isConnectedOrConnecting
     }

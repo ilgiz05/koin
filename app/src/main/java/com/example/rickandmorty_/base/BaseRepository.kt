@@ -17,7 +17,7 @@ abstract class BaseRepository {
             } catch (ioExeption: Exception) {
                 emit(
                     Resource.Error(
-                        data = null, message = ioExeption.localizedMessage ?: "bankai"
+                        data = null, message = ioExeption.localizedMessage ?: "ololo"
                     )
                 )
             }
@@ -30,7 +30,7 @@ abstract class BaseRepository {
         } catch (ioExeption: Exception) {
             emit(
                 Resource.Error(
-                    data = null, message = ioExeption.localizedMessage ?: "bankai"
+                    data = null, message = ioExeption.localizedMessage ?: "ololo"
                 )
             )
         }

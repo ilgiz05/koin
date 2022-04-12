@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.example.rickandmorty_.ui.adapters.CharacterAdapter
 
 abstract class BaseFragment<B : ViewBinding, V : BaseViewModel>(
     @LayoutRes layoutId: Int

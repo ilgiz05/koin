@@ -7,12 +7,9 @@ import com.example.rickandmorty_.base.BaseViewModel
 import com.example.rickandmorty_.data.repositories.EpisodesRepository
 import com.example.rickandmorty_.models.RickAndMortyEpisodes
 import com.example.rickandmorty_.models.RickAndMortyResponse
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class EpisodesViewModel @Inject constructor(
+class EpisodesViewModel  constructor(
     private val repository: EpisodesRepository
 ) : BaseViewModel() {
     var page = 0

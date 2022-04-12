@@ -17,15 +17,15 @@ import com.example.rickandmorty_.common.extensions.submitDataPaging
 import com.example.rickandmorty_.databinding.FragmentEpisodesBinding
 import com.example.rickandmorty_.ui.adapters.EpisodesAdapter
 import com.example.rickandmorty_.ulits.PaginationScrollListener
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
+
 class EpisodesFragment : BaseFragment<FragmentEpisodesBinding, EpisodesViewModel>(
     R.layout.fragment_episodes
 ) {
 
     override val binding by viewBinding(FragmentEpisodesBinding::bind)
-    override val viewModel: EpisodesViewModel by viewModels()
+    override val viewModel: EpisodesViewModel by viewModel()
     private val episodesAdapter = EpisodesAdapter()
 
     override fun setupViews() {
@@ -73,7 +73,8 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding, EpisodesViewModel
     }
 
     fun isOnline(): Boolean {
-        val cm = requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val cm =
+            requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val netInfo = cm.activeNetworkInfo
         return netInfo != null && netInfo.isConnectedOrConnecting
     }
